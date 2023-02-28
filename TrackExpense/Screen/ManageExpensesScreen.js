@@ -44,6 +44,7 @@ export default function ManageExpensesScreen({route})
         }
         catch(error)
         {
+            console.log(error);
             SetErrorLoader("Currently we cann't Update the expense. Try Again Later !!!!")
             SetDataLoader(false)
         }

@@ -1,5 +1,6 @@
 import axios from "axios"
 
+// https://adidos-4b7b5.firebaseio.com/
 const BACK_SERVER_URL = "https://adidos-4b7b5.firebaseio.com"
 export async function storeExpenses(expenses)
 {
@@ -21,6 +22,7 @@ export async function getExpenses()
         }
         expenses.push(expenseObj)
     }
+    console.log(expenses)
     return expenses
 }
 

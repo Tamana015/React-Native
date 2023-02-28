@@ -21,7 +21,7 @@ const styles= StyleSheet.create({
     },
     error:{
         color:GlobalStyles.colors.error700,
-        fontsize:16,
+        fontSize:16,
         marginHorizontal:50,
         textAlign:'center'
     },
