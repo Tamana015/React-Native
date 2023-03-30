@@ -1,16 +1,13 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { useState, useContext, useEffect } from "react";
+import { useNavigation } from "@react-navigation/native";
 import { View,Text, StyleSheet, Pressable } from "react-native";
 import { Image } from "react-native-elements";
 import Colors from "../../../Colors/Color";
-import { CartContext } from "../../../Store/Context";
-import IconTitleButton from "../../IconTitleButton";
-import TitleButton from "../../TitleButton";
 import IconButton from "../IconButton";
-import QuantityAddDeleteComponent from "../QuantityAddDeleteComponent";
+import ProductButtonComponent from "./ProductButtonComponent";
 
-function ProductGrid({code,name,image, margin,mrp, price,stock, potentialPromotions,isStoreOnly, offerOnline, onPress}){
-    const cartItems = useContext(CartContext);
+function ProductGrid({code,name,image, margin,mrp, price,stock, potentialPromotions,isStoreOnly, offerOnline}){
+    const navigation = useNavigation();
 
     let SaveAndOfferContainer = (margin.formattedValue && <Text style={styles.SaveText}>Save <Text style={styles.boldText}>{margin.formattedValue}</Text></Text>);
     let headerStyle = {padding:15}
@@ -22,37 +19,17 @@ function ProductGrid({code,name,image, margin,mrp, price,stock, potentialPromoti
             {margin.formattedValue &&  <Text style={styles.SaveText}>Save <Text style={styles.boldText}>{margin.formattedValue}</Text></Text>}</>);
     }
 
-    let AddButtonContainer = <IconTitleButton icon={'cart-outline'} color={Colors.grey200} size={22} pressButton={onAddProductHandler}>Add</IconTitleButton>
-
-    if(isStoreOnly)
+    function viewProductDetailHandler()
     {
-        AddButtonContainer = <Text style={styles.WarningTextMessage}>Available In-store only</Text>
+        navigation.navigate('ProductDescription',{ code:code,})
     }
 
-    if(stock.stockLevelStatus === "outOfStock")
-    {
-        AddButtonContainer = <Text style={styles.WarningTextMessage}>Out of stock</Text>
-    }
-
-    if(potentialPromotions.at(0))
-    {
-        AddButtonContainer = <TitleButton>View Deals</TitleButton>
-    }
-
-    // if(cartItems.IsItemsExist.bind(this,code))
-    // {
-    //     AddButtonContainer = <QuantityAddDeleteComponent/>
-    // }
-    function onAddProductHandler(){
-        cartItems.AddItems(code);
-        AddButtonContainer = <QuantityAddDeleteComponent/>
-    }
     return (
         <View style={[styles.container]}>
-            <Pressable style={({pressed}) =>[pressed ? styles.onPressButton : null, styles.button]} android_ripple={"#888888"} onPress={onPress}>
+            <Pressable style={({pressed}) =>[pressed ? styles.onPressButton : null, styles.button]} android_ripple={"#888888"} onPress={viewProductDetailHandler}>
                 <View style={[styles.SaveContainer,headerStyle, !margin.formattedValue && styles.setJustifyContent]}>
                     {SaveAndOfferContainer}
-                   <IconButton icon={'heart-outline'} color={Colors.grey200} size={22}></IconButton>
+                   <IconButton icon={'heart-outline'} color={Colors.grey200} size={22} iconAddStyle={styles.IconStyleContainer}></IconButton>
                 </View>
                 <View style={styles.innerContainer}>
                     <View style={styles.imageContainer}>
@@ -67,9 +44,7 @@ function ProductGrid({code,name,image, margin,mrp, price,stock, potentialPromoti
                             {potentialPromotions.at(0) && <Text style={styles.PromotionText} numberOfLines={2}>{potentialPromotions.at(0)}</Text>}
                         </View>
                     </View>
-                    <View style={styles.AddContainer}>
-                        {AddButtonContainer}
-                    </View>
+                    <ProductButtonComponent code={code} isStoreOnly={isStoreOnly} stock={stock} potentialPromotions={potentialPromotions} viewProductDetailHandler={viewProductDetailHandler}></ProductButtonComponent>
                 </View>
                 </Pressable>
         </View>
@@ -78,14 +53,15 @@ function ProductGrid({code,name,image, margin,mrp, price,stock, potentialPromoti
 const styles= StyleSheet.create({
     container:{
         flex:1,
-        margin:10,
+        margin:5,
         justifyContent:"center",
         height:450,
         borderColor: Colors.grey20,
         borderWidth:1,
         backgroundColor:'white',
         borderRadius:5,
-        paddingTop:2
+        paddingTop:5,
+        marginTop:10,
     },
     innerContainer:{      
         padding:15,
@@ -99,7 +75,7 @@ const styles= StyleSheet.create({
         "fontFamily": "normal",
         "fontSize": 12,
         backgroundColor: Colors.purple100,
-        height:25,
+        height:22,
         justifyContent:'center',
         textAlign:'center'
     },
@@ -128,8 +104,9 @@ const styles= StyleSheet.create({
         "letterSpacing": 0,
         "lineHeight": 20,
         textAlign:'left',
-        height:40,
+        height:38,
         color:Colors.grey200,
+        marginVertical:3
     },
     boldText: {
         fontWeight: 'bold'
@@ -171,6 +148,9 @@ const styles= StyleSheet.create({
         "fontSize": 15,
         fontWeight:'bold',
         textAlign:'center'
+    },
+    IconStyleContainer:{
+        backgroundColor:'white'
     }
 })
 export default ProductGrid;

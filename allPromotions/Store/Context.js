@@ -14,34 +14,43 @@ export default function CartContextHandler({children})
 
     function IsItemsExist(code)
     {
-        return true;
+        const IsItemsExist = cartItem.filter((item) => item.code.includes(code));
+        if(IsItemsExist && IsItemsExist.length > 0)
+        {
+            return IsItemsExist[0].quantity
+        }
+        return 0
     }
 
     function AddItems(code)
     {
         const IsItemsExist = cartItem.filter((item) => item.code.includes(code));
-        // let IsItemsExist = ({cartItem}) => cartItem.filter((item) => item.code === code)
-        console.log(IsItemsExist)
         if(IsItemsExist && IsItemsExist.length > 0)
-        {   
-            const ItemsDetail = cartItem.find((IsItemsExist) => IsItemsExist.code === code)
-            const newCartItem= ({cartItem}) => cartItem.filter((item) => item.code !== code)
-            console.log(newCartItem)
-            setCartItems((newCartItem) => [...newCartItem,{code:code,quantity:ItemsDetail.quantity+1 }])
-            console.log("88")
-            console.log(cartItem)
+        { 
+            for(let i = 0 ; i < cartItem.length ; i++) {
+                if(cartItem[i].code === code) {
+                    cartItem[i].quantity += 1;
+                }
+            }
+            setCartItems(cartItem)
         }
         else{
             setCartItems((items) => [...items,{code:code,quantity: 1 }])
-            console.log(cartItem)
         }
     }
 
     function DeleteItems(code)
     {
-        let IsItemsExist = (cartItems) => cartItems.filter((item) => item.code === code)
-        console.log(IsItemsExist)
-        setCartItems((items) => [...items,{code:code,quantity : IsItemsExist ? IsItemsExist.quantity -1 : 1}])
+        const IsItemsExist = cartItem.filter((item) => item.code.includes(code));
+        if(IsItemsExist && IsItemsExist.length > 0)
+        { 
+            for(let i = 0 ; i < cartItem.length ; i++) {
+                if(cartItem[i].code === code) {
+                    cartItem[i].quantity -= 1;
+                }
+            }
+            setCartItems(cartItem)
+        }
     }
     const Value = {
         cartItems:cartItem,

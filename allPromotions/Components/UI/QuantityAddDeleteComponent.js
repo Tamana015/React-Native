@@ -1,18 +1,65 @@
-import { View, StyleSheet,Text, Pressable } from "react-native"
+import { View, StyleSheet,Text} from "react-native"
 import IconButton from "./IconButton"
 import Colors from "../../Colors/Color"
+import { useContext, useEffect,useState } from "react"
+import { CartContext } from "../../Store/Context"
+import AppLoader from "./AppLoader"
+import AddCartButton from "./App/AddCartButton"
+import IconTitleButton from "../IconTitleButton"
 
-export default function QuantityAddDeleteComponent({pressButton})
+export default function QuantityAddDeleteComponent({code})
 {
-    return <View style={styles.container}>
-        <Pressable onPress={pressButton} style={({pressed}) => [styles.iconStyle, pressed && styles.pressed]}>
-            <IconButton icon={'remove'} color={'black'} size={20}></IconButton>
-        </Pressable>
-            <Text style={styles.countText}>1</Text>
-        <Pressable onPress={pressButton} style={({pressed}) => [styles.iconStyle, pressed && styles.pressed]}>
-            <IconButton icon={'add'} color={'black'} size={20}></IconButton>
-        </Pressable>
-    </View>
+    const [isQuantity, updateQuantity] = useState(false);
+    const [addButton,updateAddButton] = useState(false)
+    const cartItems = useContext(CartContext);
+
+    const [productQuantity, setProductQuantity] = useState(1);
+
+    useEffect(() => {
+        setProductQuantity(cartItems.IsItemsExist(code))
+    },[setProductQuantity,cartItems])
+
+    function onAddProductHandler(){
+        cartItems.AddItems(code);
+        updateAddButton(true)
+    }
+
+//     useEffect(() => {
+//         minimum=1
+//         maximum=100
+//    },[])
+
+    // useEffect(() => {
+    //     closeActivityIndicator();
+    // }, [closeActivityIndicator]);
+
+    // const closeActivityIndicator = () => {
+    //     setTimeout(() => {
+    //     updateQuantity(false);
+    //     }, 5000);
+    // };
+
+    async function onChangeQuantityHandler(changeType)
+    {
+        updateQuantity(true)
+        changeType === 'Add' ? cartItems.AddItems(code) : cartItems.DeleteItems(code)
+        const fetchProductQuantity =cartItems.IsItemsExist(code)
+        setProductQuantity(fetchProductQuantity)
+        !fetchProductQuantity && updateAddButton(false)
+        updateQuantity(false)
+    }
+
+    if(isQuantity)
+    {
+        return <AppLoader/>
+    }
+
+    return (addButton ? <View style={styles.container}>
+            <IconButton onPressIcon={onChangeQuantityHandler.bind(this,'Remove')} icon={'remove'} color={'black'} size={20}></IconButton>
+                <Text style={styles.countText}>{productQuantity}</Text>
+            <IconButton onPressIcon={onChangeQuantityHandler.bind(this,'Add')} icon={'add'} color={'black'} size={20}></IconButton>
+        </View> :
+        <AddCartButton onAddProductHandler={onAddProductHandler}></AddCartButton>)
 }
 
 const styles= StyleSheet.create({
@@ -25,21 +72,12 @@ const styles= StyleSheet.create({
         borderColor: Colors.purple700,
         flexDirection:'row',
         justifyContent:'space-between',
-        padding:6
-    },
-    iconStyle:{
-        backgroundColor:Colors.grey20,
-        color:Colors.grey200,
-        borderRadius:12
+        padding:4
     },
     countText:{
         color:'black',
         fontWeight:'bold',
         fontFamily:'normal',
         fontSize:16
-    },
-    pressed : {
-        color:Colors.grey200,
-        opacity:0.5,
     },
 })

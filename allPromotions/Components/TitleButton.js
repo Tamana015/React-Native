@@ -2,10 +2,10 @@ import { Ionicons } from "@expo/vector-icons";
 import { Pressable, StyleSheet , Text, View} from "react-native";
 import Colors from "../Colors/Color";
 
-function TitleButton({pressButton, children})
+function TitleButton({onPressAction,buttonStyle, children})
 {
-    return <View style={styles.container}>
-            <Pressable onPress={pressButton} style={({pressed}) => [styles.iconStyle, pressed && styles.pressed]}>
+    return <View style={[buttonStyle ? buttonStyle : styles.container]}>
+            <Pressable onPress={onPressAction} style={({pressed}) => [styles.iconStyle, pressed && styles.pressed]}>
             <Text style={styles.text}>{children}</Text>
         </Pressable>
     </View>
@@ -27,8 +27,8 @@ const styles= StyleSheet.create({
     },
     text:{
         padding:3,
-        color:Colors.grey200,
         fontWeight:'bold',
+        textAlign:'center',
     },
 })
 export default TitleButton;
