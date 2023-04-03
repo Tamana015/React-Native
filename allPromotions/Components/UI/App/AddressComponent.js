@@ -18,8 +18,7 @@ const styles= StyleSheet.create({
     padding:10
   },
   AddressText : {
-    "fontFamily": "notoserif",
     fontSize:15,
-    paddingHorizontal:5
+    paddingHorizontal:5,
   }  
 })

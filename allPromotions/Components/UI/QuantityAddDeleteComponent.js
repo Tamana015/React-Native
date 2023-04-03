@@ -5,9 +5,8 @@ import { useContext, useEffect,useState } from "react"
 import { CartContext } from "../../Store/Context"
 import AppLoader from "./AppLoader"
 import AddCartButton from "./App/AddCartButton"
-import IconTitleButton from "../IconTitleButton"
 
-export default function QuantityAddDeleteComponent({code})
+export default function QuantityAddDeleteComponent({code,buttonStyle})
 {
     const [isQuantity, updateQuantity] = useState(false);
     const [addButton,updateAddButton] = useState(false)
@@ -22,6 +21,7 @@ export default function QuantityAddDeleteComponent({code})
     function onAddProductHandler(){
         cartItems.AddItems(code);
         updateAddButton(true)
+        setProductQuantity(1)
     }
 
 //     useEffect(() => {
@@ -54,30 +54,38 @@ export default function QuantityAddDeleteComponent({code})
         return <AppLoader/>
     }
 
-    return (addButton ? <View style={styles.container}>
+    return (addButton ? <View style={[buttonStyle ? [buttonStyle, styles.container] : styles.container]}>
             <IconButton onPressIcon={onChangeQuantityHandler.bind(this,'Remove')} icon={'remove'} color={'black'} size={20}></IconButton>
                 <Text style={styles.countText}>{productQuantity}</Text>
             <IconButton onPressIcon={onChangeQuantityHandler.bind(this,'Add')} icon={'add'} color={'black'} size={20}></IconButton>
         </View> :
-        <AddCartButton onAddProductHandler={onAddProductHandler}></AddCartButton>)
+        <View style={[buttonStyle ? buttonStyle && styles.addContainerStyle : styles.addContainerStyle]}>
+            <AddCartButton onAddProductHandler={onAddProductHandler}></AddCartButton>
+        </View>)
 }
 
 const styles= StyleSheet.create({
     container:{
-        marginVertical: 6,
-        justifyContent: 'center',
         alignItems: 'center',
-        borderWidth: 1.25,
-        borderRadius:18,
-        borderColor: Colors.purple700,
+        borderWidth: 1,
+        borderRadius:24,
         flexDirection:'row',
         justifyContent:'space-between',
-        padding:4
+        height:35,
+        padding:4,
+        borderColor: Colors.purple700,
+    },
+    addContainerStyle:{
+        alignItems: 'center',
+        borderWidth: 1,
+        borderRadius:24,
+        justifyContent:'center',
+        height:35,
+        padding:4,
     },
     countText:{
         color:'black',
         fontWeight:'bold',
-        fontFamily:'normal',
         fontSize:16
     },
 })

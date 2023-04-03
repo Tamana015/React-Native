@@ -34,7 +34,10 @@ function SearchComponent({onPressSearch}) {
 const styles = StyleSheet.create({
   container:{
     flexDirection:'row',
-    justifyContent:'center'
+    justifyContent:'center',
+    height:40,
+    marginBottom:8,
+    marginTop:4
   },
   TextInput:{
     backgroundColor:'white',
@@ -44,9 +47,9 @@ const styles = StyleSheet.create({
     borderTopLeftRadius:20,
     borderBottomLeftRadius:20,
     width:200,
-    height:35,
+    height:40,
     padding:10,
-    fontFamily:"notoserif",
+    fontSize:14,
   },
   TextInputAlgin:{
     textAlign:'center'
@@ -59,7 +62,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius:20,
     borderBottomRightRadius:20,
     padding:7,
-    height:35,
+    height:40,
   }
 });
 

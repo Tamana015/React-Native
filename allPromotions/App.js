@@ -10,6 +10,7 @@ import IconButton from './Components/UI/IconButton';
 import SearchComponent from './Components/UI/App/SearchComponent';
 import CartContextHandler from './Store/Context';
 import CartQuantityComponent from './Components/UI/App/CartQuantityComponent';
+import Colors from './Colors/Color';
 
 export default function App() {
 
@@ -33,21 +34,14 @@ export default function App() {
         <StatusBar style="auto" />
         <CartContextHandler>
         <NavigationContainer>
-          <Stack.Navigator>
-            <Stack.Screen  name='Products' component={ProductsScreen} options={{headerStyle:{backgroundColor:'white'},
-            contentStyle:{backgroundColor:'white'},
-              headerRight : () => { return <CartQuantityComponent icon="cart-outline" color={"black"} size={34}/>},
+          <Stack.Navigator screenOptions={{headerStyle:{backgroundColor:'white'},
+            contentStyle:{backgroundColor:Colors.grey2},
+              headerRight : () => { return <CartQuantityComponent icon="cart-outline" color={"black"} size={36}/>},
                 headerTitle : () => {return <SearchComponent/>},
                 headerTitleAlign:'center'
-            }}/>
-            <Stack.Screen  name='ProductDescription' component={ProductDescriptionScreen} options={{headerStyle:{backgroundColor:'white'},
-            contentStyle:{backgroundColor:'white'},
-              headerRight : () => { return <CartQuantityComponent icon="cart-outline" color={"black"} size={34}/>},
-                headerTitle : () => {return <SearchComponent/>},
-                headerTitleAlign:'center'
-            }}/>
-            <Stack.Screen  name='SortProductsScreen' component={SortProductsScreen}/>
-            <Stack.Screen  name='FilterProductsScreen' component={FilterProductsScreen}/>
+            }}>
+            <Stack.Screen  name='Products' component={ProductsScreen}/>
+            <Stack.Screen  name='ProductDescription' component={ProductDescriptionScreen}/>
           </Stack.Navigator>
         </NavigationContainer>
         </CartContextHandler>

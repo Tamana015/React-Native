@@ -22,7 +22,9 @@ class Product {
     tags,
     unitCode,
     url,
-    variantValue
+    variantValue,
+    keyFeatures,
+    itemNumber,
   ) {
     this.code = code;
     this.name=name;
@@ -47,6 +49,8 @@ class Product {
     this.unitCode=unitCode;
     this.url=url;
     this.variantValue=variantValue;
+    this.keyFeatures=keyFeatures;
+    this.itemNumber=itemNumber;
   }
 }
 export default Product;

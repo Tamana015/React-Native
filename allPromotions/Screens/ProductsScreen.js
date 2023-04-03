@@ -2,13 +2,10 @@ import { FlatList, View, StyleSheet, Text } from "react-native";
 import ProductGrid from "../Components/UI/App/ProductsGrid";
 import AddressComponent from "../Components/UI/App/AddressComponent";
 import { PRODUCTS } from "../Data/DataInput";
+import BottomContainer from "../Components/UI/App/BottomButtonContainer";
 import Colors from "../Colors/Color";
-import TitleButton from "../Components/TitleButton";
-import { useNavigation } from "@react-navigation/native";
 
 function ProductsScreen() {
-    
-    const navigation = useNavigation();
     function ProductsRenderItem(itemData)
     {
         return <ProductGrid code ={itemData.item.code}
@@ -23,15 +20,10 @@ function ProductsScreen() {
                 stock = {itemData.item.stock}/>
     }
 
-    function clickNavigationHandler(clickedButton)
-    {
-        const navigationName = clickedButton === 'Sort' ? 'SortProductsScreen': 'FilterProductsScreen'
-        navigation.navigate(navigationName)
-    }
-
     return (
         <View style={styles.container}>
             <AddressComponent Address={"Erand Gardens Ext 94, 1682"}/>
+            <Text style={styles.itemCountStyle}>{PRODUCTS.length} items</Text>
             <View style={styles.innerContainer}>
                 <FlatList data={PRODUCTS} 
                     keyExtractor={(product) => product.code}
@@ -39,9 +31,9 @@ function ProductsScreen() {
                     numColumns={2}>
                 </FlatList>
             </View>
+            
             <View style={styles.bottomContainer}>
-                <TitleButton buttonStyle={styles.buttonStyle} onPressAction={clickNavigationHandler.bind(this,'Sort')}>Sort</TitleButton>
-                <TitleButton buttonStyle={styles.buttonStyle} onPressAction={clickNavigationHandler.bind(this,'Filter')}>Filter</TitleButton>
+                <BottomContainer/>
             </View>
         </View>
     )
@@ -53,20 +45,20 @@ const styles = StyleSheet.create({
     },
     innerContainer:{
         flex:1,
+        
     },
     bottomContainer:{
         borderWidth:1,
-        height:50,
+        height:56,
         flexDirection:'row',
         borderColor:Colors.grey20,
-        justifyContent:'space-between',
-        alignItems:'center',
+        justifyContent:'center',
+        alignContent:'center',
+        backgroundColor:'white'
     },
-    buttonStyle:{
-        borderWidth:0,
-        borderRightWidth:1,
-        borderRightColor:Colors.grey10,
-        flex:1,
+    itemCountStyle:{
+        margin:8,
+        fontSize:12
     }
 })
 

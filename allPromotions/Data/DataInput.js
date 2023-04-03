@@ -25,7 +25,10 @@ export const PRODUCTS = [
     ["promoted"],
      "EA",
     "/Electronics-%26-Entertainment/Television/TVs/p/000000000000826182",
-    ''
+    '',
+    ["20w output", "Bluetooth", "Yate Colour", "3 x HDMI", "USBx1 Input"
+,"UHD Smart TV","HDR 10+","2 Year Warranty"],
+"826182"
   ),
   new Product(
     "000000000000833986",
@@ -51,7 +54,10 @@ export const PRODUCTS = [
     ["unitCode"],
      "EA",
     "/Electronics-%26-Entertainment/Television/TVs/p/000000000000833986",
-    ''
+    '',
+    ["20w 2ch sound output","Tant Colour", "1 x HDMI", "USBx1 Input"
+,"UHD Smart TV","HDR 10+","0.5 Year Warranty"],
+"822182"
   ),
   new Product(
     "000000000000833981",
@@ -77,7 +83,10 @@ export const PRODUCTS = [
     ["unitCode"],
      "EA",
     "/Office%2C-Stationery-%26-Books/Arts%2C-Crafts-%26-Sewing/Overlockers/p/000000000000833981",
-    ''
+    '',
+    ["200w 2ch sound output", "Bluetooth Connectivity", "Pure Colour", "6 x HDMI", "USBx5 Input"
+,"No UHD Smart TV","HDR 18+","5 Year Warranty"],
+"346182"
   ),
   new Product(
     "000000000000833979",
@@ -103,7 +112,10 @@ export const PRODUCTS = [
     ["unitCode"],
     "EA",
 	  "/Office%2C-Stationery-%26-Books/Arts%2C-Crafts-%26-Sewing/Sewing-Machines/p/000000000000833979",
-    ''
+    '',
+    ["10w 2ch sound output", "No Bluetooth Connectivity", "Pure Colour", "3 x HDMI", "USBx1 Input"
+,"UHD Smart TV","HDR 10+","1 Year Warranty"],
+"346182"
 	),
   new Product(
     "000000000000833951",
@@ -128,7 +140,9 @@ export const PRODUCTS = [
     {stockLevelStatus: "inStock", stockLevel: 305, isValueRounded: false},
     ["unitCode"],
     "/Household-Essentials/Cookware/Canisters-%26-Dispensers/p/000000000000833951",
-    ''
+    '',
+    ["Pure Colour", "3 x HDMI", "USBx1 Input","UHD Smart TV","HDR 10+","2 Year Warranty"],
+    "834182"
 	),
   new Product(
     "000000000000833915",
@@ -154,7 +168,10 @@ export const PRODUCTS = [
     ["unitCode"],
 	  "EA",
     "/Sports%2C-Outdoors-%26-Healthy-Living/Luggage/Backpacks-%26-Trolleys/p/000000000000833915",
-    ''
+    '',
+    ["Pure Colour", "3 x HDMI", "USBx1 Input"
+,"UHD Smart TV","HDR 10+","2 Year Warranty"],
+"256182"
 	),
   new Product(
     "000000000000831582",
@@ -180,7 +197,9 @@ export const PRODUCTS = [
     ["unitCode"],
 	"EA",
     "/Garden%2C-Patio-%26-Pool/Braai-%26-Patio/Braais/p/000000000000831582",
-    ''
+    '',
+    ["20w 2ch sound output", "Bluetooth Connectivity", "Pure Colour", "3 x HDMI", "USBx1 Input"],
+    "82342"
 ),
 new Product(
   "000000000812936003",
@@ -206,7 +225,10 @@ new Product(
   ["unitCode"],
 "EA",
   "/Sports%2C-Outdoors-%26-Healthy-Living/Camping-%26-Braai/Umbrellas/p/000000000812936003",
-"Turquoise"
+"Turquoise",
+["20w 2ch sound output", "Pure Colour", "3 x HDMI", "USBx1 Input"
+,"UHD Smart TV","HDR 10+","2 Year Warranty"],
+"23274"
 ),
 new Product(
   "000000000000827102",
@@ -232,7 +254,10 @@ new Product(
   ["unitCode"],
 "EA",
   "/Home-Appliances/Heating%2C-Cooling-%26-Air-Care/Fans/p/000000000000827102",
-""
+"",
+["20w 2ch sound output", "Bluetooth Connectivity", "Pure Colour", "3 x HDMI", "USBx1 Input"
+,"UHD Smart TV","2 Year Warranty"],
+"23242"
 ),
 new Product(
   "000000000000783200",
@@ -258,7 +283,10 @@ new Product(
   ["unitCode"],
 "EA",
   "/Home-Appliances/Kitchen-Large-Appliances/Fridges/p/000000000000783200",
-""
+"",
+["20w 2ch sound output", "Bluetooth Connectivity", "Pure Colour", "3 x HDMI", "USBx1 Input"
+,"UHD Smart TV","HDR 10+"],
+"46576"
 ) ,
 new Product(
   "000000000000787036",
@@ -284,7 +312,10 @@ new Product(
   ["unitCode"],
 "EA",
   "/Home-Appliances/Kitchen-Small-Appliances/Toasters-%26-Snack-Makers/p/000000000000787036",
-""
+"",
+[ "Bluetooth Connectivity", "Pure Colour", "3 x HDMI", "USBx1 Input"
+,"UHD Smart TV","HDR 10+","2 Year Warranty"],
+"67565"
 ),
 new Product(
   "000000000000783522",
@@ -310,6 +341,12 @@ new Product(
   ["unitCode"],
   "EA",
     "/Groceries-%26-Beverages/Beverages/Coffee/p/000000000000783522",
-  ""
+  "",
+  ["20w 2ch sound output", "Bluetooth Connectivity", "Pure Colour", "3 x HDMI", "USBx1 Input"
+,"UHD Smart TV","HDR 10+","2 Year Warranty"],
+"54655"
 )
 ];
+
+export const SORTS = [{id:0,title:"Relevance"},{id:1,title:"Name (Ascending)"},{id:2,title:"Name (Descending)"},{id:3,title:"Price (Low To High)"},{id:4,title:"Price (High To Low)"}]
+
